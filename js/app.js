@@ -112,9 +112,10 @@
       const v=btn.dataset.value;
       let dur=v==="triplet"?1/3:v.startsWith("rest")?Number(v.slice(4)):Number(v);
       const beginnerHidden=settings().difficulty==="beginner"&&!beginnerValues.has(v);
-      btn.classList.toggle("hidden",beginnerHidden);
-      btn.disabled=beginnerHidden||locked||remaining<dur-.001;
-      if(v==="triplet"&&!settings().triplets)btn.disabled=true;
+      const tripletHidden=v==="triplet"&&!settings().triplets;
+      const hidden=beginnerHidden||tripletHidden;
+      btn.classList.toggle("hidden",hidden);
+      btn.disabled=hidden||locked||remaining<dur-.001;
     });
     if(mode==="A")Notation.draw($("answerNotation"),answerRhythm(),{eventColors:answerColors});
   }
@@ -289,6 +290,8 @@
     $("setupScreen").classList.remove("hidden");
   });
   document.querySelectorAll(".help-button").forEach(button=>button.addEventListener("click",()=>$("helpDialog").showModal()));
+  $("playNormalSound").addEventListener("click",()=>AudioEngine.playNormalHit());
+  $("playRestSound").addEventListener("click",()=>AudioEngine.playRestSound());
   $("closeHelp").addEventListener("click",()=>$("helpDialog").close());
   $("helpDialog").addEventListener("click",e=>{if(e.target===$("helpDialog"))$("helpDialog").close()});
 })();

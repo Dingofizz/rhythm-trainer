@@ -47,6 +47,6 @@ rhythm_trainer/
 
 ## Notes / limitations
 
-This is a first working version intended as a foundation to customise. The notation renderer is a simplified single-line rhythm staff, not a complete music engraving engine. The generator uses quarter-note beat durations; 6/8 is currently represented as three dotted-quarter-style beats for exercise timing. The triplet button adds one third of a quarter-note beat per click (three clicks fill one quarter-note beat). The current answer checker compares the entered event sequence exactly, including rests.
+This is a first working version intended as a foundation to customise. The notation renderer is a simplified single-line rhythm staff, not a complete music engraving engine. The generator uses crotchet-beat durations; 6/8 is currently represented as three dotted-crotchet-style beats for exercise timing. The triplet button adds one third of a crotchet beat per click (three clicks fill one crotchet beat). The current answer checker compares the entered event sequence exactly, including rests. Note values use UK terminology (semibreve, minim, crotchet, quaver and semiquaver).
 
 Audio begins after a user interaction because browsers restrict autoplay. Headphones are recommended.

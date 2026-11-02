@@ -112,13 +112,14 @@
           <div class="answer-builder" id="answerBuilder">
             <div class="builder-heading"><div><h3>Build your answer</h3><p>Choose a note or rest to add it to the bar.</p></div></div>
             <div class="note-palette">
-              <button class="note-choice" data-value="4"><span class="note-glyph">𝅝</span><strong>Whole</strong><small>4 beats</small></button>
-              <button class="note-choice" data-value="2"><span class="note-glyph">𝅗𝅥</span><strong>Half</strong><small>2 beats</small></button>
-              <button class="note-choice" data-value="1"><span class="note-glyph">♩</span><strong>Quarter</strong><small>1 beat</small></button>
-              <button class="note-choice" data-value="0.5"><span class="note-glyph">♪</span><strong>Eighth</strong><small>½ beat</small></button>
-              <button class="note-choice" data-value="0.25"><span class="note-glyph">♫</span><strong>Sixteenth</strong><small>¼ beat</small></button>
-              <button class="note-choice" data-value="rest1"><span class="note-glyph">𝄽</span><strong>Quarter rest</strong><small>1 beat</small></button>
-              <button class="note-choice" data-value="rest0.5"><span class="note-glyph">𝄾</span><strong>Eighth rest</strong><small>½ beat</small></button>
+              <button class="note-choice" data-value="4"><span class="note-glyph">𝅝</span><strong>Semibreve</strong><small>4 beats</small></button>
+              <button class="note-choice" data-value="2"><span class="note-glyph">𝅗𝅥</span><strong>Minim</strong><small>2 beats</small></button>
+              <button class="note-choice" data-value="1"><span class="note-glyph">♩</span><strong>Crotchet</strong><small>1 beat</small></button>
+              <button class="note-choice" data-value="0.5"><span class="note-glyph">♪</span><strong>Quaver</strong><small>½ beat</small></button>
+              <button class="note-choice" data-value="0.25"><span class="note-glyph">♫</span><strong>Semiquaver</strong><small>¼ beat</small></button>
+              <button class="note-choice" data-value="rest1"><span class="note-glyph">𝄽</span><strong>Crotchet rest</strong><small>1 beat</small></button>
+              <button class="note-choice" data-value="rest0.5"><span class="note-glyph">𝄾</span><strong>Quaver rest</strong><small>½ beat</small></button>
+              <button class="note-choice" data-value="rest0.25"><span class="note-glyph">𝄿</span><strong>Semiquaver rest</strong><small>¼ beat</small></button>
               <button class="note-choice triplet-choice" data-value="triplet"><span class="note-glyph">♬³</span><strong>Triplet</strong><small>⅓ beat each</small></button>
             </div>
             <div class="builder-actions"><button class="secondary-button" id="undoNote">Undo</button><div class="answer-actions"><button class="quiet-button" id="showAnswerA">Show answer</button><button class="primary-button" id="checkAnswer">Check answer <span>→</span></button></div></div>
@@ -169,6 +170,12 @@
       <h3>Mode A — Listen & recreate</h3><p>Play the hidden rhythm, then use the note palette to enter the same rhythm. Notes and rests fill the bar from left to right. Press Check answer when the bar is complete.</p>
       <h3>Mode B — Read & identify</h3><p>Compare the notation options and play the audio examples. Select the one that matches the rhythm shown, then check your answer.</p>
       <h3>Settings</h3><p>Choose the difficulty, time signature, triplets, and syncopation before starting. Tempo can be adjusted during practice.</p>
+      <h3>Hear the difference</h3>
+      <p>Use these examples to compare a normal hit with a rest sound.</p>
+      <div class="builder-actions">
+        <button class="quiet-button" id="playNormalSound" type="button">▶ Play normal hit</button>
+        <button class="quiet-button" id="playRestSound" type="button">▶ Play rest sound</button>
+      </div>
       <p class="help-disclaimer">This is a learning prototype. Its notation is a simplified single-line rhythm staff, not a full engraving engine.</p>
     </div>
   </dialog>

@@ -47,7 +47,7 @@
       const {event,x}=item;
       const color=lineColor(item);
       if(event.rest){
-        const symbol=event.duration>=3.5?"𝄻":event.duration>=1.5?"𝄼":event.duration>=.75?"𝄽":"𝄾";
+        const symbol=event.duration>=3.5?"𝄻":event.duration>=1.5?"𝄼":event.duration>=.75?"𝄽":event.duration>=.5?"𝄾":"𝄿";
         el("text",{x:x-8,y:staffY+8,"font-size":event.duration>=1.5?25:22,fill:color,"font-family":"serif"},svg,symbol);
         return;
       }

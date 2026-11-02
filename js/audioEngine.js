@@ -33,11 +33,18 @@
     osc.connect(bodyGain);bodyGain.connect(c.destination);osc.start(time);osc.stop(time+.13);
     drumNoise(time,.16,accent?.42:.32,1800,"highpass");
   }
-  function closedHiHat(time){
-    drumNoise(time,.075,.22,5200,"highpass");
+  function restTone(time){
+    const c=audio(),osc=c.createOscillator(),gain=c.createGain();
+    osc.type="sine";
+    osc.frequency.setValueAtTime(880,time);
+    osc.frequency.exponentialRampToValueAtTime(660,time+.1);
+    gain.gain.setValueAtTime(.0001,time);
+    gain.gain.exponentialRampToValueAtTime(.12,time+.006);
+    gain.gain.exponentialRampToValueAtTime(.0001,time+.12);
+    osc.connect(gain);gain.connect(c.destination);osc.start(time);osc.stop(time+.13);
   }
   function sound(time,duration,rest=false){
-    if(rest)closedHiHat(time);
+    if(rest)restTone(time);
     else snare(time);
   }
   const AudioEngine={
@@ -54,6 +61,14 @@
         cursor+=e.duration*beat;
       });
       return (cursor-c.currentTime)*1000+100;
+    },
+    playNormalHit(){
+      const c=audio();
+      sound(c.currentTime+.02,0.1,false);
+    },
+    playRestSound(){
+      const c=audio();
+      sound(c.currentTime+.02,0.1,true);
     },
     playClick(bpm){const c=audio();snare(c.currentTime+.02,true);}
   };
