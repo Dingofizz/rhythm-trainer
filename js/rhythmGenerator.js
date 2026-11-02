@@ -15,7 +15,7 @@
       const beats=s.meter===6?3:s.meter;
       const pool = s.difficulty==="beginner"
         ? [1,1,1,1,0.5,0.5,2]
-        : s.difficulty==="advanced" ? [0.25,0.5,0.5,0.5,1,1,2] : [0.5,0.5,1,1,1,2,0.25];
+        : s.difficulty==="advanced" ? [0.25,0.5,0.5,0.5,1,1,2] : [0.5,0.5,1,1,1,2];
       const events=[];
       let remaining=beats, guard=0;
       while(remaining>0.001 && guard++<80){
@@ -27,7 +27,8 @@
         let v=candidates[Math.floor(Math.random()*candidates.length)];
         if(v>remaining)v=remaining;
         // Keep event durations on useful subdivisions.
-        events.push({duration:v,rest:Math.random()<(s.difficulty==="beginner"?.12:.2)});
+        const canRest=s.difficulty!=="beginner"||v===1;
+        events.push({duration:v,rest:canRest&&Math.random()<(s.difficulty==="beginner"?.12:.2)});
         remaining=Math.round((remaining-v)*12)/12;
       }
       // If rounding leaves a tiny remainder, fold it into the final event.
