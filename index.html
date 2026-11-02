@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>Rhythm Lab — Personal Rhythm Trainer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Rhythm Lab home">
+        <span class="brand-mark">♬</span>
+        <span>rhythm<span class="brand-light">lab</span></span>
+      </a>
+      <div class="topbar-right">
+        <span class="local-pill"><i></i> LOCAL PRACTICE</span>
+        <button class="icon-button" id="helpBtn" title="How to use">?</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro">
+        <div>
+          <p class="eyebrow">YOUR PERSONAL MUSIC WORKSHOP</p>
+          <h1>Train your <span>rhythm.</span></h1>
+          <p class="intro-copy">Listen closely, read the notation, and build your rhythmic instincts one exercise at a time.</p>
+        </div>
+        <div class="intro-decoration" aria-hidden="true">
+          <span>♩</span><span>♪</span><span>𝄽</span><span>♫</span>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <aside class="sidebar">
+          <p class="section-label">TRAINING MODE</p>
+          <button class="mode-tab active" data-mode="A">
+            <span class="mode-icon">耳</span>
+            <span><strong>Listen & recreate</strong><small>Mode A · Rhythm dictation</small></span>
+            <span class="tab-arrow">→</span>
+          </button>
+          <button class="mode-tab" data-mode="B">
+            <span class="mode-icon">♫</span>
+            <span><strong>Read & identify</strong><small>Mode B · Rhythm recognition</small></span>
+            <span class="tab-arrow">→</span>
+          </button>
+
+          <div class="sidebar-divider"></div>
+          <p class="section-label">EXERCISE SETTINGS</p>
+          <label class="field-label" for="difficulty">Difficulty</label>
+          <select id="difficulty">
+            <option value="beginner">Beginner</option>
+            <option value="intermediate" selected>Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+          <label class="field-label" for="meter">Time signature</label>
+          <select id="meter">
+            <option value="4">4/4</option>
+            <option value="3">3/4</option>
+            <option value="2">2/4</option>
+            <option value="6">6/8</option>
+          </select>
+          <div class="setting-check">
+            <label><input type="checkbox" id="allowTriplets" checked> <span>Include triplets</span></label>
+            <label><input type="checkbox" id="allowSync" checked> <span>Include syncopation</span></label>
+          </div>
+          <div class="sidebar-divider"></div>
+          <div class="tempo-heading"><label class="field-label" for="tempo">Tempo</label><strong><span id="tempoValue">90</span> <small>BPM</small></strong></div>
+          <input type="range" id="tempo" min="40" max="200" value="90">
+          <div class="range-labels"><span>40</span><span>200</span></div>
+          <button class="secondary-button full" id="newExercise">＋ New exercise</button>
+          <p class="sidebar-note">Exercises are generated in your browser. Your settings stay on this page while you practise.</p>
+        </aside>
+
+        <section class="main-panel">
+          <div class="exercise-header">
+            <div>
+              <p class="eyebrow" id="modeEyebrow">MODE A · RHYTHM DICTATION</p>
+              <h2 id="exerciseTitle">What did you hear?</h2>
+            </div>
+            <div class="exercise-meta"><span class="meta-dot"></span><span id="exerciseMeta">4 beats · Intermediate</span></div>
+          </div>
+
+          <div class="instruction-card" id="instruction">
+            <span class="instruction-icon">♫</span>
+            <div><strong>Listen to the rhythm</strong><p>Play the pattern as many times as you need, then build it using the note buttons below.</p></div>
+          </div>
+
+          <div class="notation-card" id="notationCard">
+            <div class="notation-topline">
+              <span class="card-label" id="notationLabel">YOUR ANSWER</span>
+              <span class="notation-hint" id="notationHint">Select note values to build the bar</span>
+            </div>
+            <div class="staff-wrap" id="answerStaff">
+              <svg id="answerNotation" viewBox="0 0 760 150" role="img" aria-label="Your rhythm notation"></svg>
+            </div>
+            <div class="notation-footer"><span id="barCount">BAR 1</span><span id="durationStatus">0 / 4 beats</span></div>
+          </div>
+
+          <div class="controls-row" id="listenControls">
+            <button class="play-button" id="playPrompt"><span class="play-symbol">▶</span><span>Play rhythm</span></button>
+            <button class="quiet-button" id="replayPrompt">↻ Replay</button>
+            <span class="play-hint">Use headphones for the clearest listening experience</span>
+          </div>
+
+          <div class="answer-builder" id="answerBuilder">
+            <div class="builder-heading"><div><h3>Build your answer</h3><p>Choose a note or rest to add it to the bar.</p></div><button class="text-button" id="clearAnswer">Clear all</button></div>
+            <div class="note-palette">
+              <button class="note-choice" data-value="4"><span class="note-glyph">𝅝</span><strong>Whole</strong><small>4 beats</small></button>
+              <button class="note-choice" data-value="2"><span class="note-glyph">𝅗𝅥</span><strong>Half</strong><small>2 beats</small></button>
+              <button class="note-choice" data-value="1"><span class="note-glyph">♩</span><strong>Quarter</strong><small>1 beat</small></button>
+              <button class="note-choice" data-value="0.5"><span class="note-glyph">♪</span><strong>Eighth</strong><small>½ beat</small></button>
+              <button class="note-choice" data-value="0.25"><span class="note-glyph">♫</span><strong>Sixteenth</strong><small>¼ beat</small></button>
+              <button class="note-choice" data-value="rest1"><span class="note-glyph">𝄽</span><strong>Quarter rest</strong><small>1 beat</small></button>
+              <button class="note-choice" data-value="rest0.5"><span class="note-glyph">𝄾</span><strong>Eighth rest</strong><small>½ beat</small></button>
+              <button class="note-choice triplet-choice" data-value="triplet"><span class="note-glyph">♬³</span><strong>Triplet</strong><small>⅓ beat each</small></button>
+            </div>
+            <div class="builder-actions"><button class="secondary-button" id="undoNote">↶ Undo</button><button class="primary-button" id="checkAnswer">Check answer <span>→</span></button></div>
+          </div>
+
+          <div class="mode-b-area hidden" id="modeBArea">
+            <div class="choices-heading"><div><h3>Which rhythm did you hear?</h3><p>Read the notation, then choose the matching audio pattern.</p></div></div>
+            <div class="choice-list" id="choiceList"></div>
+            <div class="builder-actions"><button class="quiet-button" id="playChoices">▶ Play selected example</button><button class="primary-button" id="checkChoice">Check answer <span>→</span></button></div>
+          </div>
+
+          <div class="feedback hidden" id="feedback" role="status" aria-live="polite">
+            <div class="feedback-icon" id="feedbackIcon">✓</div><div><strong id="feedbackTitle">Correct!</strong><p id="feedbackText">Great work.</p></div>
+            <button class="secondary-button" id="nextExercise">Next exercise →</button>
+          </div>
+        </section>
+      </section>
+
+      <section class="bottom-strip">
+        <div><span class="strip-icon">◷</span><span><strong>Practice at your pace</strong><small>Replay and take your time</small></span></div>
+        <div><span class="strip-icon">♬</span><span><strong>Generated rhythms</strong><small>Fresh patterns every round</small></span></div>
+        <div><span class="strip-icon">⌂</span><span><strong>Private by design</strong><small>No account or data upload</small></span></div>
+      </section>
+    </main>
+    <footer>RHYTHM LAB <span>·</span> A personal practice tool</footer>
+  </div>
+
+  <dialog id="helpDialog">
+    <div class="dialog-head"><div><p class="eyebrow">QUICK GUIDE</p><h2>How to practise</h2></div><button class="icon-button" id="closeHelp">×</button></div>
+    <div class="help-content">
+      <h3>Mode A — Listen & recreate</h3><p>Play the hidden rhythm, then use the note palette to enter the same rhythm. Notes and rests fill the bar from left to right. Press Check answer when the bar is complete.</p>
+      <h3>Mode B — Read & identify</h3><p>Compare the notation options and play the audio examples. Select the one that matches the rhythm shown, then check your answer.</p>
+      <h3>Settings</h3><p>Difficulty changes the note values used. Triplets and syncopation can be switched on or off. Tempo controls playback speed.</p>
+      <p class="help-disclaimer">This is a learning prototype. Its notation is a simplified single-line rhythm staff, not a full engraving engine.</p>
+    </div>
+  </dialog>
+  <script src="js/rhythmGenerator.js"></script>
+  <script src="js/audioEngine.js"></script>
+  <script src="js/notation.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
